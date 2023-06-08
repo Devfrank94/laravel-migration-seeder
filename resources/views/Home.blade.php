@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel 9 + Bootstrap Template</title>
+        <title>Laravel Migration Seeder</title>
 
         {{-- Includiamo gli assets con la direttiva @vite --}}
         @vite('resources/js/app.js')
