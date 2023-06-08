@@ -12,22 +12,49 @@
     <body>
 
         <main>
-            <div class="container">
-                <div class="row">
-                    <div class="col text-center">
-
-                        <div class="card">
-                            <div class="card-body">
-                                <img src="{{ Vite::asset('resources/img/laravel.png') }}" alt="">
-
-                                <h1 class="card-title">Laravel 9 + Bootstrap Template</h1>
-                            </div>
-                        </div>
-
-                    </div>
+            <div class="container py-5">
+                <h1 class="mb-4">Tabella Treni:</h1>
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">#ID</th>
+                            <th scope="col">Nome Compagnia</th>
+                            <th scope="col">Stazione di Partenza</th>
+                            <th scope="col">Stazione di arrivo</th>
+                            <th scope="col">Data e ora Partenza</th>
+                            <th scope="col">Data e ora Arrivo</th>
+                            <th scope="col">Codice Treno</th>
+                            <th scope="col">Numero delle carrozze</th>
+                            <th scope="col">In Orario</th>
+                            <th scope="col">Cancellato</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach ($trains as $train)
+                        <tr>
+                            <th scope="row">{{$train->id}}</th>
+                            <td>{{$train->agency}}</td>
+                            <td>{{$train->departure_station}}</td>
+                            <td>{{$train->arrival_station}}</td>
+                            <td>{{$train->departure_time}}</td>
+                            <td>{{$train->arrival_time}}</td>
+                            <td>{{$train->train_code}}</td>
+                            <td>{{$train->number_of_carriages}}</td>
+                            @if ($train->in_time === 1 && $train->deleted === 0)
+                                <td class="text-success"><strong>IN ORARIO</strong></td>
+                                <td class="text-success"><strong>IN SERVIZIO</strong></td>
+                            @elseif ($train->in_time === 0 && $train->deleted === 0)
+                                <td class="text-danger"><strong>IN RITARDO</strong></td>
+                                <td class="text-success"><strong>IN SERVIZIO</strong></td>
+                            @else
+                                <td class="text-danger"><strong>N/D</strong></td>
+                                <td class="text-danger"><strong>CANCELLATO</strong></td>
+                            @endif
+                        </tr>
+                        @endforeach
+                    </tbody>
+                    </table>
                 </div>
-            </div>
         </main>
-
     </body>
 </html>
