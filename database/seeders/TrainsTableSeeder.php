@@ -27,7 +27,7 @@ class TrainsTableSeeder extends Seeder
         $new_train->in_time = rand(0,1);
         $new_train->deleted = rand(0,1);
         // dump($new_train);
-        
+        $new_train->save();
         }
     }
 }
